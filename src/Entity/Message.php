@@ -6,6 +6,7 @@ use App\Repository\MessageRepository;
 use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Enum\StatusMessage;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 /**
@@ -24,8 +25,8 @@ class Message
     #[ORM\Column(length: 255)]
     private ?string $text = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $status = null;
+    #[ORM\Column(length: 255, nullable: true, enumType: StatusMessage::class)]
+    private ?StatusMessage $status = null;
     
     #[ORM\Column(type: 'datetime')]
     private DateTime $createdAt;
@@ -59,12 +60,12 @@ class Message
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?StatusMessage
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(StatusMessage $status): static
     {
         $this->status = $status;
 

@@ -27,5 +27,5 @@ when@test:
     framework:
         messenger:
             transports:
-                async: test://
-                sync: test://
+                async: test://?support_delay_stamp=true
+                sync: test://?support_delay_stamp=true
